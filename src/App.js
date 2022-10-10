@@ -46,18 +46,18 @@ function App() {
   }
   console.log(matchHistory[0])
 
-  var playerPuuid = {
-    puuid: playerData.puuid,
-  }
-  var gameOneStats = matchHistory[0].players.all_players;
+  // var playerPuuid = {
+  //   puuid: playerData.puuid,
+  // }
+  // var gameOneStats = matchHistory[0].players.all_players;
   
-  const filterResults = gameOneStats.filter(element => {
+  // const filterResults = gameOneStats.filter(element => {
 
-    //return element.id === playerPuuid;
-    return element.puuid === '958f7239-83ba-5cdd-9d80-337b10b6a5ed'
-  });
+  //   //return element.id === playerPuuid;
+  //   return element.puuid === '958f7239-83ba-5cdd-9d80-337b10b6a5ed'
+  // });
 
-  console.log("hi " + JSON.stringify(filterResults) + "hi");
+  // console.log("hi " + JSON.stringify(filterResults) + "hi");
 
   return (
     <div className="App">
