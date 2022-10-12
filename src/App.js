@@ -2,7 +2,6 @@ import axios from 'axios';
 import React,  {useState}  from 'react';
 import './App.css';
 
-
 //family#2501
 
 function App() {
@@ -32,8 +31,6 @@ function App() {
     await axios.get(APIRankedData).then(function(response){
       setRankedData(response.data.data);
       getMatchHistory();
-      console.log(rankedData)
-      console.log('ranked data above')
     }).catch(function(error){
       console.log(error);
     })
@@ -44,13 +41,10 @@ function App() {
     var APIMatchHistory = "https://api.henrikdev.xyz/valorant/v3/matches/na/"  + searchText + "/" + playerTag;
     await axios.get(APIMatchHistory).then(function(response){
       setMatchHistory(response.data.data);
-     console.log(matchHistory)
-     console.log('match history above')
     }).catch(function(error){
       console.log(error);
     })
   }
-  console.log(matchHistory[0])
   
 //Sorts info from players in a game to match the player that was
  var recentlyPlayedCharacter;
@@ -59,12 +53,9 @@ function App() {
  var characterImage;
  var redTeam = false;
  
-
+//Gathers stats from most recently played game
  function lastPlayedGame(){
-  
   const gameOneStats = matchHistory[0].players.all_players;
-  console.log(gameOneStats)
-  console.log('gameone stats above')
    const filterResults = gameOneStats.filter(element => {
     return element.puuid === playerData.puuid;
   });
@@ -78,17 +69,9 @@ function App() {
     deathsAmount = filterResults[0].stats.deaths;
     characterImage = filterResults[0].assets.agent.full;
   }
-  
-  console.log(filterResults)
-  console.log('filter results above')
- 
   if (filterResults[0].team === 'Red'){
     redTeam = true;
   }
- 
-  console.log(redTeam)
-  console.log(JSON.stringify(filterResults) + 'ffiiiii')
-  console.log(characterImage + 'charr')
 }
 
 var filterTeammates = [];
@@ -97,7 +80,6 @@ var filterEnemies = [];
 
 function showFriendlyTeam(){
   var gameOneStats = matchHistory[0].players.all_players;
-  
     filterTeammates = gameOneStats.filter(element => {
     if(redTeam === true){
      if (element.team === 'Red'){
@@ -116,44 +98,8 @@ function showFriendlyTeam(){
     }
   }
 });
-  console.log(filterTeammates);
-  console.log("filtered team above")
-//traverse array to get info
-
-//Grab specific info from friendly teammates
-
-
-// console.log(mateNames)
-// console.log("mate names above")
-// console.log(mateTags)
-// console.log("mate tags above")
 
 }
-
-// const mateNames = filterTeammates.map((a) => {
-//   return {name:a.name}
-// });
-// const mateTags = filterTeammates.map((a) => {
-//   return {tag:a.tag}
-// });
-// const mateCharacter = filterTeammates.map((a) => {
-//   return {character:a.character}
-// });
-// const mateKills = filterTeammates.map((a) => {
-//   return {kills:a.kills}
-// });
-// const mateDeaths = filterTeammates.map((a) => {
-//   return {deaths:a.deaths}
-// });
-
-
-
-
-console.log((filterEnemies) + "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-
-
-
-
 
   return (
     <div className="App">
